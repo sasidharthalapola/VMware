@@ -1,0 +1,53 @@
+To manage users and groups on a Windows OS running on a VM created with VMware vSphere, you can use various command-line utilities such as net,
+wmic, and netsh. Here are the commands for common user and group management tasks:
+
+##Create User:
+
+--net user username password /add
+Replace username with the desired username and password with the desired password for the new user.
+
+## Delete User:
+
+--net user username /delete
+Replace username with the username of the user you want to delete.
+
+## Create Group:
+
+--net localgroup groupname /add
+Replace groupname with the desired name for the new group.
+
+## Delete Group:
+
+--net localgroup groupname /delete
+Replace groupname with the name of the group you want to delete.
+
+## Add User to Group:
+
+--net localgroup groupname username /add
+Replace groupname with the name of the group and username with the username of the user you want to add to the group.
+
+## Remove User from Group:
+
+-- net localgroup groupname username /delete
+Replace groupname with the name of the group and username with the username of the user you want to remove from the group.
+
+## Create Password:
+Passwords are typically set when creating a user using the net user command as shown above. 
+If you want to change an existing password, you can use the following command:
+--net user username newpassword
+Replace username with the username of the user and newpassword with the new password.
+
+Configure Password Policy:
+Password policies can be configured using the Local Security Policy editor (secpol.msc) or Group Policy Editor (gpedit.msc) on Windows. 
+You can specify password requirements such as minimum length, complexity, expiration, and lockout settings.
+
+In the Group Policy Editor, navigate to:
+
+Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy
+Here, you can configure various password policy settings according to your organization's requirements.
+
+These commands can be executed from the Command Prompt or PowerShell on the Windows VM. Make sure to run the Command Prompt or PowerShell as an administrator 
+to have the necessary permissions for user and group management tasks.
+
+Additionally, keep in mind that managing users and groups directly on Windows VMs may not be the most efficient method in a larger environment. Consider integrating 
+the VMs with Active Directory for centralized user and group management.
